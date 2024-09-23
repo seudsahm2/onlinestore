@@ -11,11 +11,12 @@ class Promotion(models.Model):
 
 class Collection(models.Model):
     title = models.CharField(max_length=255)
-    featured_product = models.ForeignKey("Product", on_delete=models.CASCADE)  # to fix circular dependency use quotes
+    featured_product = models.ForeignKey("Product", on_delete=models.SET_NULL, null=True, related_name='+')  # to fix circular dependency use quotes
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    slug = models.SlugField()
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
