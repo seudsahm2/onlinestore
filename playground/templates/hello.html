@@ -5,5 +5,26 @@
     {% else %}
     <h1>Hello World</h1>
     {% endif %}
+
+  {% if products %}
+   <ul>
+    {% for product  in products %}
+      <li>{{product.title}} - ${{product.unit_price}}</li>
+    {% endfor %}
+   </ul> 
+   {% elif product %}
+    <p>{{product.title}} - ${{product.unit_price}}</p>
+   {% elif results%}
+   <ul>
+    {% for result in results %}
+      <li>{{result}}</li>
+    {% endfor %}
+   </ul> 
+    {% elif full_name %}
+      <p>{{full_name}}</p>
+    {% elif tags %}
+      <p>{{tags}}</p>
+   {% endif %}   
+
   </body>
 </html>
